@@ -89,7 +89,7 @@ public class Main
     	                    String name = sc.nextLine();
     	                    System.out.println("Enter Password");	                    
     	                    String password = sc.nextLine();
-    	            
+    	                    String title;
     	                    ArrayList<User> users = userLogin.loadUsers("buyers.csv");
     	                    if(userLogin.authenticateUser(name, password, users)){
     	                        System.out.print("Login Successful");
@@ -100,7 +100,7 @@ public class Main
     	                        switch(choice){
     	                            case "1":{
     	                                System.out.println("Enter Project Title");
-    	                                String title = sc.nextLine();
+    	                                title = sc.nextLine();
     	                                System.out.println("Enter Project Description");
     	                                String description = sc.nextLine();
     	                                System.out.println("Enter Budget");
@@ -108,6 +108,10 @@ public class Main
     	                                Project project = new Project(title, description, name, budget);
     	                                project.addProject();
     	                                break;
+    	                            }
+    	                            case "2":{
+    	                                Payment p = new Payment(name);
+    	                                p.makePayment();
     	                            }
     	                                
     	                            case "3":

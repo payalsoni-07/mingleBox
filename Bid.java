@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Bid{
     public String coder;
+    public static String owner;
     public String project;
     public double amount;
     public Bid(String coder){
@@ -15,10 +16,13 @@ public class Bid{
     public void setProject(String p){
         this.project = p;
     }
+    public void setOwner(String owner){
+        this.owner = owner;
+    }
     public void setAmount(double amt){
         this.amount = amt;
     }
-    public static  ArrayList<String> getList(){
+    public   ArrayList<String> getList(){
         ArrayList<String> ProjectList = new ArrayList<>();
         int i = 1;
         try(BufferedReader br = new BufferedReader(new FileReader("projects.csv"))){
@@ -26,6 +30,7 @@ public class Bid{
         while((line = br.readLine()) != null){
             String[] projectData = line.split(",");
             ProjectList.add(projectData[0]);
+            setOwner(projectData[2]);
             System.out.println(i+" "+projectData[0]);
             i++;
         }
@@ -37,7 +42,7 @@ public class Bid{
     }
     public void bidding(){
 	        try(BufferedWriter writer = new BufferedWriter(new FileWriter("bidding.csv",true))){
-	            String biddingData = coder+","+project+","+amount+"\n";
+	            String biddingData = coder+","+project+","+amount+","+owner+"\n";
 	            writer.write(biddingData);
 	            System.out.println("Successful");
 	        }
